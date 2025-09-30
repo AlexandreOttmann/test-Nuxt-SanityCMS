@@ -7,11 +7,12 @@ export default defineNuxtConfig({
     projectId: 'nu6yntji',
     dataset: 'production',
     apiVersion: "2024-12-01",
+    useCdn: true,
+    withCredentials: false,
     visualEditing: {
 	    token: process.env.SANITY_VIEWER_TOKEN,
 	    studioUrl: process.env.SANITY_STUDIO_URL,
 	    stega: true
     }
-
   }
 })

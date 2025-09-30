@@ -18,7 +18,7 @@ export function getSanityClient(event?: H3Event) {
   return createClient({
     projectId,
     dataset,
-    apiVersion: '2025-01-01',
+    apiVersion: '2024-12-01',
     token,
     useCdn: true,
     perspective: 'published',

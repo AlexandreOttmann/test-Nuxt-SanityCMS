@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+import {media} from 'sanity-plugin-media'
 
 export default defineConfig({
   name: 'default',
@@ -9,8 +10,11 @@ export default defineConfig({
 
   projectId: 'nu6yntji',
   dataset: 'production',
-
+  mediaLibrary: {
+    enabled: true,
+  },
   plugins: [
+   
     structureTool({
       structure: (S) =>
         S.list()
@@ -60,8 +64,14 @@ export default defineConfig({
             S.documentTypeListItem('teamMember').title('Team Members'),
             S.documentTypeListItem('partner').title('Partners'),
             S.documentTypeListItem('review').title('Reviews'),
+            S.divider(),
+            S.listItem()
+              .title('Assets')
+              .icon(() => '📁')
+              .child(S.documentTypeList('sanity.imageAsset').title('All Assets')),
           ]),
     }),
+    media(),
     visionTool(),
   ],
 

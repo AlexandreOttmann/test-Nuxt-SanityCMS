@@ -245,7 +245,7 @@ const relatedPostsQuery = /* groq */`
 
 // Fetch the main post with error handling
 const { data: post, pending, error: postError } = await useSanityQuery<Post>(postQuery)
-
+console.log('Post data:', post)
 // Fetch related posts (simplified)
 const { data: relatedPosts, error: relatedError } = await useSanityQuery<Post[]>(relatedPostsQuery)
 

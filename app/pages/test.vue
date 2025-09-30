@@ -199,11 +199,11 @@ const usersQuery = /* groq */`
   }
 `
 
-// Fetch data
-const { data: posts, pending: postsPending } = await useSanityQuery<Post[]>(postsQuery)
-const { data: voyages, pending: voyagesPending } = await useSanityQuery<Voyage[]>(voyagesQuery)
-const { data: categories, pending: categoriesPending } = await useSanityQuery<Category[]>(categoriesQuery)
-const { data: users, pending: usersPending } = await useSanityQuery<User[]>(usersQuery)
+// Fetch data using server-side API routes
+const { data: posts, pending: postsPending } = await useFetch<Post[]>('/api/posts')
+const { data: voyages, pending: voyagesPending } = await useFetch<Voyage[]>('/api/voyages')
+const { data: categories, pending: categoriesPending } = await useFetch<Category[]>('/api/categories')
+const { data: users, pending: usersPending } = await useFetch<User[]>('/api/users')
 
 // Combined loading state
 const pending = postsPending || voyagesPending || categoriesPending || usersPending
