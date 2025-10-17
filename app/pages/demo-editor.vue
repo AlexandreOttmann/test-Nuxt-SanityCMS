@@ -46,6 +46,7 @@
         <div>
           <h3 class="text-lg font-semibold mb-2 text-gray-700">Informations</h3>
           <div class="space-y-2 text-sm text-gray-600">
+            <img :src="sampleVoyage.imageUrl" :alt="sampleVoyage.image?.alt" class="w-full h-auto rounded-lg shadow-md">
             <div>📍 Destination: {{ sampleVoyage.destinations?.[0]?.title || 'Non définie' }}</div>
             <div>⏱️ Durée: {{ sampleVoyage.duration }} jours</div>
             <div>⭐ Note: {{ sampleVoyage.rating }}/5</div>
@@ -160,6 +161,8 @@ const voyageQuery = /* groq */`
     destinations[]->{_id, title},
     categories[]->{_id, title},
     pricing,
+    "imageUrl": image.asset->url,
+    ...,
     programmeBlock[]{
       title,
       badgeText,
@@ -174,7 +177,7 @@ const voyageQuery = /* groq */`
 // Fetch sample content
 const { data: samplePost } = await useSanityQuery(postQuery)
 const { data: sampleVoyage } = await useSanityQuery(voyageQuery)
-
+console.log('Sample voyage:', sampleVoyage)
 // Helper function
 const formatDate = (dateString: string) => {
   if (!dateString) return 'Date inconnue'

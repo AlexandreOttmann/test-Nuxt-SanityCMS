@@ -199,6 +199,7 @@ const postQuery = /* groq */`
     slug,
     excerpt,
     publishedAt,
+    ...,
     "readingTime": round(length(pt::text(body)) / 5 / 180),
     author->{
       _id,
